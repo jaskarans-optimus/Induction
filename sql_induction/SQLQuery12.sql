@@ -367,7 +367,78 @@ select cast(eid as varchar(10)) from Employe;
 -- SQL Case
 select case when salary>5000 and age<35 then 'yes' else 'no' End from employe;
 
+
+
+
+-->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DAY2<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 --Ranking Functions
 use myoffice;
-select top 5 * from employe order by salary desc;
+SELECT TOP 5 * FROM employe ORDER BY salary DESC;
+
+-- show alternate highest paid
+SELECT first_name,last_name,salary FROM(SELECT ROW_NUMBER()OVER (ORDER BY salary desc)AS ROW,* FROM Employe) Employe WHERE ROW%2=0;
+
+--Common Table Expression
+WITH Employee_CTE(first_name,last_name,salary)
+AS
+(
+ SELECT first_name,last_name,salary FROM  Employe WHERE salary > 5000
+ )
+SELECT * FROM Employee_CTE;
+
+--WITH ROLLUP & WITH CUBE
+
+
+SELECT departement,sum(salary) AS SalarySum FROM Employe 
+GROUP BY departement WITH ROLLUP;
+
+
+SELECT departement,sum(salary) AS SalarySum FROM Employe 
+GROUP BY departement WITH CUBE;
+
+--Except & Intersect
+SELECT * FROM Employe
+EXCEPT
+SELECT * FROM  Employe WHERE Experience>6;
+
+SELECT * FROM Employe
+INTERSECT
+SELECT * FROM Employe WHERE Experience<6; 
+
+--Corelated subqueries
+SELECT eid,first_name,last_name,salary FROM(SELECT ROW_NUMBER()OVER (ORDER BY eid asc)AS ROW,* FROM Employe) Employe WHERE ROW<4;
+
+
+--Running Aggregates
+SELECT a.eid, a.salary,SUM(b.salary)
+from Employe a,Employe b
+where b.eid<=a.eid
+GROUP BY a.eid,a.salary
+ORDER BY a.eid;
+
+--Cluster Index
+
+CREATE CLUSTERED INDEX CI_Employe_salary
+ON Employe(salary);
+
+--Non Cluster Index
+CREATE NONCLUSTERED INDEX NI_Employe_Eid
+on Employe(designation);
+
+--Triggers
+
+select * from emp_slab;
+
+CREATE TRIGGER CalGross ON emp_slab
+AFTER INSERT 
+AS 
+UPDATE emp_slab SET Gross=(base+hr+da)*12;
+
+--Cursors
+DECLARE cur_emp_slab2 CURSOR
+    FOR SELECT base,hr,da FROM emp_slab
+OPEN cur_emp_slab2
+FETCH cur_emp_slab2
+UPDATE emp_slab SET Gross=(da+base+hr)*12;
+FETCH NEXT FROM cur_emp_slab2;
 
