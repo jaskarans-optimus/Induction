@@ -442,3 +442,49 @@ FETCH cur_emp_slab2
 UPDATE emp_slab SET Gross=(da+base+hr)*12;
 FETCH NEXT FROM cur_emp_slab2;
 
+--Functions
+CREATE FUNCTION LeapYear (@yy INT)
+RETURNS VARCHAR(20)
+AS 
+BEGIN
+	DECLARE @ret VARCHAR(20); 
+	IF(@yy % 4 ! = 0)
+	SET @ret = 'It is a common year';
+	ELSE IF (@yy % 100 != 0)
+	SET @ret = ' It is a leap year';
+	ELSE
+	SET @ret= 'It is a common year';
+	RETURN @ret;
+END;
+SELECT dbo.LeapYear(2000);
+
+--Stored procedures
+CREATE PROCEDURE getAllInfo(@id INT)
+AS
+BEGIN
+SELECT * FROM Employe,emp_slab WHERE Employe.eid=emp_slab.p_id  AND Employe.eid=@id;
+END;
+EXEC getAllInfo 12;
+
+
+--Exception Handling
+
+CREATE PROCEDURE ExceptionHandle
+AS 
+BEGIN
+BEGIN TRY
+    -- Generate a divide-by-zero error.
+    SELECT 1/0;
+END TRY
+BEGIN CATCH
+    SELECT
+        ERROR_NUMBER() AS ErrorNumber
+        ,ERROR_SEVERITY() AS ErrorSeverity
+        ,ERROR_STATE() AS ErrorState
+        ,ERROR_PROCEDURE() AS ErrorProcedure
+        ,ERROR_LINE() AS ErrorLine
+        ,ERROR_MESSAGE() AS ErrorMessage;
+END CATCH;
+END;
+
+exec ExceptionHandle;
