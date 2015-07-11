@@ -1,171 +1,151 @@
 --5.SQL create database
-CREATE DATABASE myoffice;
+CREATE DATABASE Myoffice;
 
 -- 6-7 create Table (NOT NULL, DEFAULT , PRIMARY KEY,CHECK)
 USE myoffice;
-CREATE TABLE Employe(
-eid INT PRIMARY KEY ,
-first_name VARCHAR(255) NOT NULL ,
-last_name VARCHAR(255),
-age INT NOT NULL CHECK(age >=18),
-sex VARCHAR(6) NOT NULL DEFAULT 'Male' CHECK (sex = 'Male' OR sex = 'Female') ,
-activestatus BIT,
-designation VARCHAR(255),
-salary BIGINT,
-departement VARCHAR(255),
-city VARCHAR(255) 
+CREATE TABLE Employee(
+Id INT PRIMARY KEY ,
+FirstName VARCHAR(255) NOT NULL ,
+LastName VARCHAR(255),
+Age INT NOT NULL CHECK(Age >=18),
+Sex VARCHAR(6) NOT NULL DEFAULT 'Male' CHECK (Sex = 'Male' OR Sex = 'Female') ,
+ActiveStatus BIT,
+Designation VARCHAR(255),
+Salary BIGINT,
+Departement VARCHAR(255),
+City VARCHAR(255) 
 );
-drop table Employe;
-
 
 --14.SQL Drop :Create a table of Designation and drop it
-CREATE TABLE designation(
-eid INT,
-designation varchar(255));
+CREATE TABLE Designation(
+Id INT,
+Designation VARCHAR(255));
 
-DROP TABLE designation;
+-- 15. SQL Create Index : Create a unique index on the first name and last name  and a full text index on first name of the Employee table
+CREATE UNIQUE INDEX UX_FirstName
+on Employee(FirstName,LastName);
 
--- 15. SQL Create Index : Create a unique index on the first name and last name  and a full text index on first name of the employee table
-CREATE UNIQUE INDEX findex
-on Employe(first_name);
 
-CREATE UNIQUE INDEX lindex
-on Employe(last_name);
 CREATE FULLTEXT CATALOG ft AS DEFAULT;
-CREATE FULLTEXT INDEX ON Employe(first_name)
-KEY INDEX findex;
+CREATE FULLTEXT INDEX ON Employee(FirstName)
+KEY INDEX UX_FirstName;
 
--- 16. SQL Alter: Alter the table employees. Modify designation column to take integer value and create a new table for designation which is related to employee by designation id
+-- 16. SQL Alter: Alter the table Employees. Modify designation column to take integer value and create a new table for designation which is related to Employee by designation id
 
-ALTER TABLE Employe
-ALTER COLUMN designation INT;
+ALTER TABLE Employee
+ALTER COLUMN Designation INT;
 
-CREATE TABLE designation(
-d_id int PRIMARY KEY,
-name varchar(255)
+CREATE TABLE Designation(
+Id int PRIMARY KEY,
+Name VARCHAR(255)
 );
 
-ALTER TABLE Employe
-ADD FOREIGN KEY(designation) REFERENCES designation (d_id); 
+ALTER TABLE Employee
+ADD FOREIGN KEY(Designation) REFERENCES Designation (Id); 
 
 
 --17.SQL In:Find Employee salary in a particular range using  In operator
-insert into Employe values(12 ,'kerry ','perry',19,'Male',1,2,5000,'Marketing','Delhi' );
-insert into Employe values(13 ,'jenny ','pino',19,'Male',1,1,25000,'HR','Delhi' );
-insert into Employe values(121 ,'rosie ','meno',29,'Female',0,2,45000,'Marketing','Delhi' );
-insert into Employe values(131 ,'nirvana ','aro',19,'Male',0,2,245000,'HR','Noida' );
-insert into Employe values(111 ,'kam','aarra',19,'Male',0,2,245000,NULL,'Noida' );
-SELECT * FROM Employe
-where salary IN (5000, 50001 ,5003 , 5005);
+INSERT INTO Employee VALUES(12 ,'kerry ','perry',19,'Male',1,2,5000,'Marketing','Delhi' );
+INSERT INTO Employee VALUES(13 ,'jenny ','pino',19,'Male',1,1,25000,'HR','Delhi' );
+INSERT INTO Employee VALUES(121 ,'rosie ','meno',29,'Female',0,2,45000,'Marketing','Delhi' );
+INSERT INTO Employee VALUES(131 ,'nirvana ','aro',19,'Male',0,2,245000,'HR','Noida' );
+INSERT INTO Employee VALUES(111 ,'kam','aarra',19,'Male',0,2,245000,NULL,'Noida' );
+SELECT * FROM Employee
+WHERE Salary IN (5000, 50001 ,5003 , 5005);
 
 --18.SQL Between :Find Employee salary in a particular range using  Between operator
 
-SELECT * FROM Employe
-where salary between 3000 AND 6000;
+SELECT * FROM Employee
+where Salary BETWEEN 3000 AND 6000;
 
---19. SQL Alias : Display column using alias name from  Employee table
-SELECT first_name+' '+last_name AS FullName
-FROM Employe;
+--19. SQL Alias : Display column using alias name FROM  Employee table
+SELECT FirstName+' '+LastName AS FullName
+FROM Employee;
 
-select e.first_name, e.salary from Employe as e;
+SELECT e.FirstName, e.Salary FROM Employee as e;
 
---20. SQL Joins : Display employee details using Join with employee slabs table.
-create table emp_slab(
-p_id int,
-base int,
-hra int,
-pf int
+--20. SQL Joins : Display Employee details using Join with Employee slabs table.
+CREATE TABLE Employee_Salary(
+Id int,
+Base int,
+Hra int,
+Pf int
 );
-insert into emp_slab values(2,500000,20000,50000);
-insert into emp_slab values(12,250000,12000,20000);
-insert into emp_slab values(13,350000,22000,30000);
-insert into emp_slab values(5,900000,80000,70000);
+INSERT INTO Employee_Salary VALUES(2,500000,20000,50000);
+INSERT INTO Employee_Salary VALUES(12,250000,12000,20000);
+INSERT INTO Employee_Salary VALUES(13,350000,22000,30000);
+INSERT INTO Employee_Salary VALUES(5,900000,80000,70000);
 
-SELECT first_name,last_name FROM Employe JOIN emp_slab ON Employe.eid =emp_slab.p_id;
+SELECT FirstName,LastName FROM Employee JOIN Employee_Salary ON Employee.Id =Employee_Salary.Id;
 
--- 21. SQL Left Join:Create a sample employee management system, having table Employee & Department. Employees are associated with some department, there are some employees exist which doesn't associated with any department yet. Display all the employees and their department information whether they are associated with some department or not.
+-- 21. SQL Left Join:Create a sample Employee manAgement system, having table Employee & Department. Employees are associated with some department, there are some Employees exist which doesn't associated with any department yet. Display all the Employees and their department information whether they are associated with some department or not.
 
-create table departement (
-dept varchar(255),
-id int);
+CREATE TABLE Departement (
+Name VARCHAR(255),
+Id int);
 
-insert into departement values('Marketing',6);
+INSERT INTO Departement VALUES('Marketing',6);
 
-insert into departement values('HR',61);
+INSERT INTO Departement VALUES('HR',61);
 
-insert into departement values('Teachnical',12);
-insert into departement values('admin',122);
-
-
-select * from Employe  left join departement on Employe.departement=departement.dept;
-
---23. SQL Right Join:Same case as above but there are some department also exist which doesn't have any employees associated with it. Display all the departments and number of employees associated with it.
+INSERT INTO Departement VALUES('Teachnical',12);
+INSERT INTO Departement VALUES('admin',122);
 
 
-select * from Employe right join departement on Employe.departement=departement.dept;
+SELECT * FROM Employee  LEFT JOIN Departement ON Employee.Departement=Departement.Name;
+
+--23. SQL Right Join:Same case as above but there are some department also exist which doesn't have any Employees associated with it. Display all the departments and number of Employees associated with it.
 
 
--- 24.SQL Full Join:Same case as above. Display all the employees and departments whether they are associated with each other or not.
-
-select * from Employe full outer join departement on Employe.departement=departement.dept;
+SELECT * FROM Employee RIGHT JOIN Departement on Employee.Departement=Departement.Name;
 
 
---25.SQL Union:Suppose a ERP system having multiple table for employees of different companies. Create tables for 3 companies such as "ABC", "LMN" & "XYZ" and display all the employees of all the companies.
+-- 24.SQL Full Join:Same case as above. Display all the Employees and departments whether they are associated with each other or not.
 
-create table ABC(
-id int,
-name varchar(255),
-designation varchar(255),
-);
-insert into ABC values(1,'zora','VP');
-insert into ABC values(21,'nerru','Director');
-insert into ABC values(23,'sarva','TD');
-insert into ABC values(11,'zasdas','TL');
-insert into ABC values(1,'zora','HL');
+SELECT * FROM Employee FULL OUTER JOIN Departement ON Employee.Departement=Departement.Name;
 
-create table LMN(
-id int,
-name varchar(255),
-designation varchar(255),
+
+--25.SQL Union:Suppose a ERP system having multiple table for Employees of different companies. Create tables for 3 companies such as "ABC", "LMN" & "XYZ" and display all the Employees of all the companies.
+
+CREATE TABLE ABC(
+Id INT,
+Name VARCHAR(255),
+Designation VARCHAR(255),
 );
 
-insert into ABC values(11,'zareen','VP');
-insert into ABC values(23,'pone','TD');
-insert into ABC values(11,'don','TL');
-insert into ABC values(1,'shaun','HL');
-
-create table XYZ(
-id int,
-name varchar(255),
-designation varchar(255),
+CREATE TABLE LMN(
+Id INT,
+Name VARCHAR(255),
+Designation VARCHAR(255),
 );
-insert into ABC values(23,'sawe','VP');
-insert into ABC values(23,'svan','TD');
-insert into ABC values(11,'pio','TL');
-insert into ABC values(1,'aka','HL');
 
+CREATE TABLE XYZ(
+Id INT,
+Name VARCHAR(255),
+Designation VARCHAR(255),
+);
 
-select * from ABC
+SELECT * FROM ABC
 UNION ALL
-select * from LMN
+SELECT * FROM  LMN
 UNION ALL
-select * from XYZ;
+SELECT * FROM XYZ;
 
--- 26.SQL Select Into :Create a backup system where records are being saved in another table in different database. Write queries to insert data of "Employee" table "Employee_Backup" table in another database.
+-- 26.SQL SELECT Into :Create a backup system where records are being saved in another table in different database. Write queries to insert data of "Employee" table "Employee_Backup" table in another database.
 
-select * into Employee_Backup from Employe;
+SELECT * INTO EmployeeBackup FROM Employee;
 
--- 27.SQL Increment: increment the salary of all employee by 5000  
-update Employe
-set salary=salary+5000;
+-- 27.SQL Increment: increment the salary of all Employee by 5000  
+UPDATE Employee
+SET Salary=Salary+5000;
 
--- 28. SQL Views:create a view with details of managers whose salary is more than 60000. Add a column date of joining in the employee table and display in view the joining date in the format specified in #1 of previous exercise
-alter table Employe
-add date_of_joining date;
+-- 28. SQL Views:create a view with details of manAgers whose salary is more than 60000. Add a column date of joining in the Employee table and display in view the joining date in the format specified in #1 of previous exercise
+ALTER TABLE Employee
+ADD DateOfJoining DATE;
 
 
-create view managers as
-select * from Employe where salary>=6000 AND departement in ('Manager');
+CREATE VIEW ManagersView AS
+SELECT * FROM  Employee WHERE Salary>=6000 AND Departement in ('Manager');
 
 
 --29.SQL Dates:1.Get current date in the format specified in example -Mon  20th sep 10, 1:30 pm
@@ -177,195 +157,113 @@ select * from Employe where salary>=6000 AND departement in ('Manager');
 
 
 
-SELECT DATENAME(WEEKDAY,GETDATE())+' '+DATENAME(DAY,GETDATE())+'th '+DATENAME(MONTH,GETDATE())+' , '+substring(convert(varchar(29),getdate(),0),13,18);
+SELECT DATENAME(WEEKDAY,GETDATE())+' '+DATENAME(DAY,GETDATE())+'th '+DATENAME(MONTH,GETDATE())+' , '+SUBSTRING(CONVERT(VARCHAR(29),GETDATE(),0),13,18);
 
 
-select dateadd(day,2,getdate());
+SELECT DateAdd(Day,2,GETDATE());
 
 --30.SQL Nulls:Count sum of a column in which one of the values is Null
 
-select * from Employe;
-select Sum((case when eid is null then 1 else 0 end )
-+(case when first_name is null then 1 else 0 end)
-+(case when last_name is null then 1 else 0 end)
-+(case when age is null then 1 else 0 end)
-+(case when sex is null then 1 else 0 end)
-+(case when departement is null then 1 else 0 end)
-+(case when date_of_joining is null then 1 else 0 end)) from Employe;
+SELECT * FROM Employee;
+SELECT Sum((CASE WHEN Id IS NULL THEN 1 ELSE 0 END )
++(CASE WHEN FirstName IS NULL THEN 1 ELSE 0 END)
++(CASE WHEN LastName IS NULL THEN 1 ELSE 0 END)
++(CASE WHEN Age IS NULL THEN 1 ELSE 0 END)
++(CASE WHEN Sex IS NULL THEN 1 ELSE 0 END)
++(CASE WHEN Departement IS NULL THEN 1 ELSE 0 END)
++(CASE WHEN DateOfJoining IS NULL THEN 1 ELSE 0 END)) FROM Employee;
 
 --31. SQL isnull()
-select * from Employe where last_name is null;
+SELECT * FROM Employee WHERE LastName IS NULL;
 
 --32.SQL Data Types
-select cast(salary*(0.1275) as decimal(10,2)) from Employe;
+SELECT CAST(Salary*(0.1275) AS DECIMAL(10,2)) FROM Employee;
 
 
 --SQL avg()
-select * from Employe where salary>=(select avg(salary) from Employe);
+SELECT * FROM Employee WHERE Salary>=(SELECT AVG(Salary) FROM Employee);
 
 --SQL count()
-select * from departement;
-select * from Employe;
+SELECT * FROM Departement;
+SELECT * FROM Employee;
 
 
-select d.dept,d.id, count(eid) "number of employees"
-from departement d,Employe e
-where d.dept=e.departement
-group by d.id,d.dept;
+SELECT d.Name,d.Id, COUNT(Id) "number of Employees"
+FROM Departement d,Employee e
+WHERE d.Name=e.Departement
+GROUP BY d.Id,d.Name;
 
 --SQL max()
-select * from employe where salary < (select Max(salary) from Employe);
+SELECT * FROM Employee WHERE Salary < (SELECT MAX(Salary) FROM Employee);
 
 --SQL min()
-select * from employe where salary >(select Min(salary) from Employe);
+SELECT * FROM Employee WHERE Salary >(SELECT MIN(Salary) FROM Employee);
 
 --SQL sum()
-select sum(salary) from employe;
+SELECT SUM(Salary) FROM Employee;
 
 --SQL Group By
-select d.dept,d.id, count(eid) "number of employees"
-from departement d,Employe e
-where d.dept=e.departement
-group by d.id,d.dept;
+SELECT d.Name,d.Id, COUNT(Id) "number of Employees"
+FROM Departement d,Employee e
+WHERE d.Name=e.Departement
+GROUP BY d.Id,d.Name;
 
 --SQL Having
-create table order1(
-orderid int,
-orderdate date,
-orders int,
-custername varchar(255)
+CREATE TABLE Order1(
+OrderId INT,
+OrderDate DATE,
+Orders INT,
+CusterName VARCHAR(255)
 );
-drop table order1;
-select * from order1;
-insert into order1 values(2,'2000-08-10',50,'roni');
-insert into order1 values(22,'1970-01-10',2200,'asgar');
-insert into order1 values(23,'2000-01-10',100,'heera');
+DROP TABLE Order1;
+SELECT * FROM Order1;
+INSERT INTO  Order1 VALUES(2,'2000-08-10',50,'roni');
+INSERT INTO  Order1 VALUES(22,'1970-01-10',2200,'asgar');
+INSERT Order1 VALUES(23,'2000-01-10',100,'heera');
 
 
-select custername from order1 group by custername having SUM(orders)<2000;
+SELECT CusterName FROM Order1 GROUP BY CusterName HAVING SUM(Orders)<2000;
 
 --SQL upper()
-select first_name,UPPER(last_name) as Last_name from Employe; 
+SELECT FirstName,UPPER(LastName) AS LastName FROM Employee; 
 
 
 --SQL lower()
-select last_name, lower(last_name) as last_name from Employe;
+SELECT LastName, LOWER(LastName) AS LastName FROM Employee;
+
 
 --SQL len()
-select len(first_name) as lengthoffirstname,len(last_name) as lengthoflastname from Employe;
+SELECT LEN(FirstName) AS LengthOfFirstName,LEN(LastName) AS LengthOfLastName FROM Employee;
 
 --SQL round()
-select round(salary,0) from Employe;
+SELECT ROUND(Salary,0) FROM Employee;
 
---SQL getdate()
-select * from employe;
-select  first_name,last_name,age,sex,departement,getDate() from Employe;
+--SQL GETDATE()
 
---SQL convert()
+SELECT  FirstName,LastName,Age,sex,Departement,GETDATE() FROM Employee;
 
-select first_name,last_name,convert(varchar(40),getdate(),0) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),1) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),2) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),3) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),4) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),5) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),6) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),0) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),101) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),102) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),103) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),104) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),105) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),106) from employe;
+--SQL CONVERT()
 
--- SQL cast()
-select cast(eid as varchar(10)) from Employe;
--- SQL Case
-select case when salary>5000 and age<35 then 'yes' else 'no' End from employe;
-
-
---SQL avg()
-select * from Employe where salary>=(select avg(salary) from Employe);
-
---SQL count()
-select * from departement;
-select * from Employe;
-
-
-select d.dept,d.id, count(eid) "number of employees"
-from departement d,Employe e
-where d.dept=e.departement
-group by d.id,d.dept;
-
---SQL max()
-select * from employe where salary < (select Max(salary) from Employe);
-
---SQL min()
-select * from employe where salary >(select Min(salary) from Employe);
-
---SQL sum()
-select sum(salary) from employe;
-
---SQL Group By
-select d.dept,d.id, count(eid) "number of employees"
-from departement d,Employe e
-where d.dept=e.departement
-group by d.id,d.dept;
-
---SQL Having
-create table order1(
-orderid int,
-orderdate date,
-orders int,
-custername varchar(255)
-);
-drop table order1;
-select * from order1;
-insert into order1 values(2,'2000-08-10',50,'roni');
-insert into order1 values(22,'1970-01-10',2200,'asgar');
-insert into order1 values(23,'2000-01-10',100,'heera');
-
-
-select custername from order1 group by custername having SUM(orders)<2000;
-
---SQL upper()
-select first_name,UPPER(last_name) as Last_name from Employe; 
-
-
---SQL lower()
-select last_name, lower(last_name) as last_name from Employe;
-
---SQL len()
-select len(first_name) as lengthoffirstname,len(last_name) as lengthoflastname from Employe;
-
---SQL round()
-select round(salary,0) from Employe;
-
---SQL getdate()
-select * from employe;
-select  first_name,last_name,age,sex,departement,getDate() from Employe;
-
---SQL convert()
-
-select first_name,last_name,convert(varchar(40),getdate(),0) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),1) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),2) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),3) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),4) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),5) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),6) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),0) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),101) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),102) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),103) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),104) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),105) from employe;
-select first_name,last_name,convert(varchar(40),getdate(),106) from employe;
+SELECT FirstName,LastName,CONVERT(VARCHAR(40),GETDATE(),0) FROM Employee;
+SELECT FirstName,LastName,CONVERT(VARCHAR(40),GETDATE(),1) FROM Employee;
+SELECT FirstName,LastName,CONVERT(VARCHAR(40),GETDATE(),2) FROM Employee;
+SELECT FirstName,LastName,CONVERT(VARCHAR(40),GETDATE(),3) FROM Employee;
+SELECT FirstName,LastName,CONVERT(VARCHAR(40),GETDATE(),4) FROM Employee;
+SELECT FirstName,LastName,CONVERT(VARCHAR(40),GETDATE(),5) FROM Employee;
+SELECT FirstName,LastName,CONVERT(VARCHAR(40),GETDATE(),6) FROM Employee;
+SELECT FirstName,LastName,CONVERT(VARCHAR(40),GETDATE(),0) FROM Employee;
+SELECT FirstName,LastName,CONVERT(VARCHAR(40),GETDATE(),101) FROM Employee;
+SELECT FirstName,LastName,CONVERT(VARCHAR(40),GETDATE(),102) FROM Employee;
+SELECT FirstName,LastName,CONVERT(VARCHAR(40),GETDATE(),103) FROM Employee;
+SELECT FirstName,LastName,CONVERT(VARCHAR(40),GETDATE(),104) FROM Employee;
+SELECT FirstName,LastName,CONVERT(VARCHAR(40),GETDATE(),105) FROM Employee;
+SELECT FirstName,LastName,CONVERT(VARCHAR(40),GETDATE(),106) FROM Employee;
 
 -- SQL cast()
-select cast(eid as varchar(10)) from Employe;
+SELECT CAST(Id as VARCHAR(10)) FROM Employee;
 -- SQL Case
-select case when salary>5000 and age<35 then 'yes' else 'no' End from employe;
+SELECT CASE WHEN Salary>5000 and Age<35 THEN 'yes' ELSE 'no' END FROM Employee;
+
 
 
 
@@ -373,61 +271,61 @@ select case when salary>5000 and age<35 then 'yes' else 'no' End from employe;
 -->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DAY2<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 --Ranking Functions
 use myoffice;
-SELECT TOP 5 * FROM employe ORDER BY salary DESC;
+SELECT TOP 5 * FROM Employee ORDER BY salary DESC;
 
 -- show alternate highest paid
-SELECT first_name,last_name,salary FROM(SELECT ROW_NUMBER()OVER (ORDER BY salary desc)AS ROW,* FROM Employe) Employe WHERE ROW%2=0;
+SELECT FirstName,LastName,salary FROM(SELECT ROW_NUMBER()OVER (ORDER BY salary desc)AS ROW,* FROM Employee) Employee WHERE ROW%2=0;
 
 --Common Table Expression
-WITH Employee_CTE(first_name,last_name,salary)
+WITH Employee_CTE(FirstName,LastName,salary)
 AS
 (
- SELECT first_name,last_name,salary FROM  Employe WHERE salary > 5000
+ SELECT FirstName,LastName,salary FROM  Employee WHERE salary > 5000
  )
 SELECT * FROM Employee_CTE;
 
 --WITH ROLLUP & WITH CUBE
 
 
-SELECT departement,sum(salary) AS SalarySum FROM Employe 
-GROUP BY departement WITH ROLLUP;
+SELECT Departement,sum(salary) AS SalarySum FROM Employee 
+GROUP BY Departement WITH ROLLUP;
 
 
-SELECT departement,sum(salary) AS SalarySum FROM Employe 
-GROUP BY departement WITH CUBE;
+SELECT Departement,sum(salary) AS SalarySum FROM Employee 
+GROUP BY Departement WITH CUBE;
 
 --Except & Intersect
-SELECT * FROM Employe
+SELECT * FROM Employee
 EXCEPT
-SELECT * FROM  Employe WHERE Experience>6;
+SELECT * FROM  Employee WHERE Experience>6;
 
-SELECT * FROM Employe
+SELECT * FROM Employee
 INTERSECT
-SELECT * FROM Employe WHERE Experience<6; 
+SELECT * FROM Employee WHERE Experience<6; 
 
 --Corelated subqueries
-SELECT eid,first_name,last_name,salary FROM(SELECT ROW_NUMBER()OVER (ORDER BY eid asc)AS ROW,* FROM Employe) Employe WHERE ROW<4;
+SELECT eid,FirstName,LastName,salary FROM(SELECT ROW_NUMBER()OVER (ORDER BY eid asc)AS ROW,* FROM Employee) Employee WHERE ROW<4;
 
 
 --Running Aggregates
 SELECT a.eid, a.salary,SUM(b.salary)
-from Employe a,Employe b
+FROM Employee a,Employee b
 where b.eid<=a.eid
 GROUP BY a.eid,a.salary
 ORDER BY a.eid;
 
 --Cluster Index
 
-CREATE CLUSTERED INDEX CI_Employe_salary
-ON Employe(salary);
+CREATE CLUSTERED INDEX CI_Employee_salary
+ON Employee(salary);
 
 --Non Cluster Index
-CREATE NONCLUSTERED INDEX NI_Employe_Eid
-on Employe(designation);
+CREATE NONCLUSTERED INDEX NI_Employee_Eid
+on Employee(designation);
 
 --Triggers
 
-select * from emp_slab;
+SELECT * FROM emp_slab;
 
 CREATE TRIGGER CalGross ON emp_slab
 AFTER INSERT 
@@ -462,7 +360,7 @@ SELECT dbo.LeapYear(2000);
 CREATE PROCEDURE getAllInfo(@id INT)
 AS
 BEGIN
-SELECT * FROM Employe,emp_slab WHERE Employe.eid=emp_slab.p_id  AND Employe.eid=@id;
+SELECT * FROM Employee,emp_slab WHERE Employee.eid=emp_slab.p_id  AND Employee.eid=@id;
 END;
 EXEC getAllInfo 12;
 
@@ -483,7 +381,7 @@ BEGIN CATCH
         ,ERROR_STATE() AS ErrorState
         ,ERROR_PROCEDURE() AS ErrorProcedure
         ,ERROR_LINE() AS ErrorLine
-        ,ERROR_MESSAGE() AS ErrorMessage;
+        ,ERROR_MESSAge() AS ErrorMessAge;
 END CATCH;
 END;
 

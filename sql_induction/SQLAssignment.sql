@@ -37,17 +37,17 @@ INSERT INTO t_transaction VALUES('U2','P1','20101215','Order',75);
 INSERT INTO t_transaction VALUES('U3','P2','20110115','Payment',250);
 
 
-SELECT t_user_master.UserName AS UserName ,t_product_master.Product_Name AS Product_Name,
-SUM(CASE WHEN t_transaction.Transaction_Type='Order' THEN 1 ELSE 0 END) AS Ordered_Quantity,
-SUM(CASE WHEN t_transaction.Transaction_Type='Payment' THEN t_transaction.Transaction_Amount ELSE 0 END) AS Amount_Paid,
-MAX(t_transaction.Transaction_Date) AS Last_Transaction_Date,
-(SUM(CASE WHEN t_transaction.Transaction_Type='Order' THEN t_transaction.Transaction_Amount ELSE 0 END)*t_product_master.Cost_Per_Item)-SUM(CASE WHEN t_transaction.Transaction_Type='Payment' THEN t_transaction.Transaction_Amount ELSE 0 END) AS Balance
-FROM ((t_product_master 
-		INNER JOIN t_transaction 
-		ON t_product_master.Product_ID = t_transaction.Product_ID) 
-		INNER JOIN t_user_master 
-		ON t_transaction.UserID=t_user_master.UserID) 
-GROUP BY t_transaction.UserID,t_transaction.Product_ID,t_product_master.Product_Name,t_user_master.UserName,t_product_master.Cost_Per_Item;
+--SELECT t_user_master.UserName AS UserName ,t_product_master.Product_Name AS Product_Name,
+--SUM(CASE WHEN t_transaction.Transaction_Type='Order' THEN 1 ELSE 0 END) AS Ordered_Quantity,
+--SUM(CASE WHEN t_transaction.Transaction_Type='Payment' THEN t_transaction.Transaction_Amount ELSE 0 END) AS Amount_Paid,
+--MAX(t_transaction.Transaction_Date) AS Last_Transaction_Date,
+--(SUM(CASE WHEN t_transaction.Transaction_Type='Order' THEN t_transaction.Transaction_Amount ELSE 0 END)*t_product_master.Cost_Per_Item)-SUM(CASE WHEN t_transaction.Transaction_Type='Payment' THEN t_transaction.Transaction_Amount ELSE 0 END) AS Balance
+--FROM ((t_product_master 
+--		INNER JOIN t_transaction 
+--		ON t_product_master.Product_ID = t_transaction.Product_ID) 
+--		INNER JOIN t_user_master 
+--		ON t_transaction.UserID=t_user_master.UserID) 
+--GROUP BY t_transaction.UserID,t_transaction.Product_ID,t_product_master.Product_Name,t_user_master.UserName,t_product_master.Cost_Per_Item;
 
 
 SELECT (SELECT us.UserName FROM t_user_master us WHERE t_transaction.UserID=us.UserID) AS User_Name,
