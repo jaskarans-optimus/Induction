@@ -102,7 +102,7 @@ HAVING COUNT(*)>3;
 
 
 --Q7.
-SELECT MAX(d.DeptName) ,(SELECT Employee.Name FROM Employee WHERE Employee.Id=d.DeptHeadID ) AS DeptHeadId
+SELECT MAX(d.DeptName) AS DeptName ,(SELECT Employee.Name FROM Employee WHERE Employee.Id=d.DeptHeadID ) AS DeptHeadId
 FROM Departement  d INNER JOIN Employee e ON d.DeptID=e.DeptID
 GROUP BY D.DeptID,d.DeptHeadID;
 
@@ -127,7 +127,7 @@ GROUP BY ea.EmpId) SUB2);
 
 --Q 10.
 
-SELECT (SELECT Employee.Name FROM Employee WHERE emp.Id=Employee.Id )
+SELECT (SELECT Employee.Name FROM Employee WHERE emp.Id=Employee.Id ) AS Name
 FROM
 (SELECT ea.EmpId,SUM(ea.WorkingDays)-SUM(ea.PresentDays) AS Absence_days
 FROM Employee e INNER JOIN EmployeeAttendance ea ON E.Id=ea.EmpId
