@@ -134,4 +134,4 @@ FROM Employee e INNER JOIN EmployeeAttendance ea ON E.Id=ea.EmpId
 GROUP BY ea.EmpId) Sub 
 INNER JOIN Employee emp 
 ON Sub.EmpId=emp.Id
-WHERE sub.Absence_days>=3;
+WHERE sub.Absence_days>3;
