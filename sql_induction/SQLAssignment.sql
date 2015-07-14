@@ -1,18 +1,22 @@
 CREATE DATABASE Shipment;
+--DROP DATABASE Shipment;
 USE Shipment;
 CREATE TABLE t_product_master(
 Product_ID VARCHAR(255) PRIMARY KEY,
 Product_Name VARCHAR(MAX) NOT NULL,
 Cost_Per_Item MONEY CHECK(Cost_Per_Item>0)
 );
+--drop table t_PRODUCT_master;
 INSERT INTO t_product_master VALUES('P1','Pen',10);
 INSERT INTO t_product_master VALUES('P2','Scale',15);
 INSERT INTO t_product_master VALUES('P3','Note Book',25);
---drop table t_product_master;
+
 CREATE TABLE t_user_master(
-UserID VARCHAR(255) PRIMARY KEY
+UserID VARCHAR(255) PRIMARY KEY,
 UserName VARCHAR(MAX) NOT NULL
 );
+
+--drop table t_USER_master;
 SELECT * FROM t_user_master;
 INSERT INTO t_user_master VALUES('U1','Alfred Lawrence');
 INSERT INTO t_user_master VALUES('U2','William Paul');
@@ -55,8 +59,7 @@ SELECT (SELECT us.UserName FROM t_user_master us WHERE t_transaction.UserID=us.U
 SUM(CASE WHEN t_transaction.Transaction_Type='Order' THEN 1 ELSE 0 END) AS Ordered_Quantity,
 SUM(CASE WHEN t_transaction.Transaction_Type='Payment' THEN t_transaction.Transaction_Amount ELSE 0 END) AS Amount_Paid,
 MAX(t_transaction.Transaction_Date) AS Last_Transaction_Date,
-(SUM(CASE WHEN t_transaction.Transaction_Type='Order' THEN t_transaction.Transaction_Amount ELSE 0 END)*(SELECT pr.Cost_Per_Item FROM t_product_master AS pr WHERE p.Cost_Per_Item=pr.Cost_Per_Item
-))-SUM(CASE WHEN t_transaction.Transaction_Type='Payment' THEN t_transaction.Transaction_Amount ELSE 0 END) AS Balance
+(SUM(CASE WHEN t_transaction.Transaction_Type='Order' THEN t_transaction.Transaction_Amount ELSE 0 END)*(SELECT pr.Cost_Per_Item FROM t_product_master AS pr WHERE p.Cost_Per_Item=pr.Cost_Per_Item))-SUM(CASE WHEN t_transaction.Transaction_Type='Payment' THEN t_transaction.Transaction_Amount ELSE 0 END) AS Balance
 FROM ((t_product_master p
 		INNER JOIN t_transaction 
 		ON p.Product_ID = t_transaction.Product_ID) 
