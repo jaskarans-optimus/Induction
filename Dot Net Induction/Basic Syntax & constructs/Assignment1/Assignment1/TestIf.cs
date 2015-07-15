@@ -11,6 +11,7 @@ namespace Assignment1
         public static void Main()
         {
             string languageChoice = System.Console.ReadLine();
+
             if (languageChoice.Equals("VB", StringComparison.InvariantCultureIgnoreCase))
             {
                 System.Console.WriteLine("VB .NET: OOP, multithreading andmore!");
