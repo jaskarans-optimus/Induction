@@ -34,11 +34,11 @@ namespace Assignment6
         {
             get
             {
-                return age;
+                return sex;
             }
             set
             {
-                age = value;
+                sex = value;
             }
         }
         public String Name

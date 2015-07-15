@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assignment6
 {
@@ -45,7 +41,7 @@ namespace Assignment6
         {
             get
             {
-                return age;
+                return ;
             }
             set
             {
