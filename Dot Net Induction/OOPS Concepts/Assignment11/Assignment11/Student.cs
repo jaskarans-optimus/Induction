@@ -8,108 +8,108 @@ namespace Assignment11
 {
     class Student
     {
-        private string name;
-        private string guardiansName;
-        private string address;
-        private int age;
-        private char sex;
-        private DateTime dateOfBirth;
-        private string mobileNo;
+        private string _name;
+        private string _guardiansName;
+        private string _address;
+        private int _age;
+        private char _sex;
+        private DateTime _dateOfBirth;
+        private string _mobileNo;
         public Student()
         {
 
         }
         public Student(string name,string guardiansName,string address,int age,char sex,DateTime dateOfBirth,string mobileNo)
         {
-            this.name = name;
-            this.guardiansName = guardiansName;
-            this.address = address;
-            this.age = age;
-            this.sex = sex;
-            this.dateOfBirth = dateOfBirth;
-            this.mobileNo = mobileNo;
+            this.Name = name;
+            this.GuardiansName = guardiansName;
+            this.Address = address;
+            this.Age = age;
+            this.Sex = sex;
+            this.DateOfBirth = dateOfBirth;
+            this.MobileNo = mobileNo;
         }
         public string Name
         {
             get
             {
-                return name;
+                return _name;
             }
             set
             {
-                name = value;
+                _name = value;
             }
         }
         public string GuardiansName
         {
             get
             {
-                return guardiansName;
+                return _guardiansName;
             }
             set
             {
-                guardiansName = value;
+                _guardiansName = value;
             }
         }
         public string Address
         {
             get
             {
-                return name;
+                return _address;
             }
             set
             {
-                name = value;
+                _address = value;
             }
         }
         public int Age
         {
             get
             {
-                return age;
+                return _age;
             }
             set
             {
-                age = value;
+                _age = value;
             }
         }
         public char Sex
         {
             get
             {
-                return sex;
+                return _sex;
             }
             set
             {
-                sex=value;
+                _sex=value;
             }
         }
         public DateTime DateOfBirth
         {
             get
             {
-                return dateOfBirth;
+                return _dateOfBirth;
             }
             set
             {
-                dateOfBirth = value;
+                _dateOfBirth = value;
             }
         }
         public string MobileNo
         {
             get
             {
-                return mobileNo;
+                return _mobileNo;
             }
             set
             {
-                mobileNo = value;
+                _mobileNo = value;
             }
 
         }
         public override string ToString()
         {
-            return "Name:"+name+"\tGuardian's Name: "+guardiansName+"\nAge: "+age+"\tSex: "+sex+"\nDate Of Birth: "+dateOfBirth+"\tAddress: "+address+"\nMobile: "+mobileNo;
+            return "Name:"+Name+"\tGuardian's Name: "+GuardiansName+"\nAge: "+Age+"\tSex: "+Sex+"\nDate Of Birth: "+DateOfBirth+"\tAddress: "+Address+"\nMobile: "+MobileNo;
         }
         static void Main(string[] args)
         {

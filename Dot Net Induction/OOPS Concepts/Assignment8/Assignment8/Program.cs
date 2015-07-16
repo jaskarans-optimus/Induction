@@ -7,42 +7,46 @@ namespace Assignment8
     {
 
         enum StudentAttribute { name, erollNumber,fathersName, marks, collegeName, semester };
-        String name;
-        long enrollNumber;
+        String _name;
+        long _enrollNumber;
 
-        String fathersName;
-        int[] marks;
-        String collegeName;
-        int semester;
+        String _fathersName;
+        int[] _marks;
+        String _collegeName;
+        int _semester;
         public Student()
         {
 
         }
         public Student(String name,long enrollNumber,String fathersName,int[] marks,String collegeName,int semester)
         {
-            this.name = name;
-            this.enrollNumber = enrollNumber;
+            this._name = name;
+            this._enrollNumber = enrollNumber;
          
-            this.fathersName = fathersName;
-            this.marks = marks;
-            this.collegeName = collegeName;
-            this.semester = semester;
+            this._fathersName = fathersName;
+            this._marks = marks;
+            this._collegeName = collegeName;
+            this._semester = semester;
         }
         public String Name { 
             get
             {
-                return name;
+                return _name;
             }
             set 
             {
-                name = value;
+                _name = value;
             }
         }
         public long EnrollNumber 
         {
             get
             {
-                return enrollNumber;
+                return _enrollNumber;
+            }
+            set
+            {
+                _enrollNumber = value;
             }
           
         }
@@ -51,42 +55,42 @@ namespace Assignment8
         {
             get
             {
-                return fathersName;
+                return _fathersName;
             }
             set
             {
-                fathersName = value;
+                _fathersName = value;
             }
         }
         public String CollegeName 
         {
             get 
             {
-                return collegeName;
+                return _collegeName;
             }
             set
             {
-                collegeName = value;
+                _collegeName = value;
             }
         }
         public int Semester 
         {
             get
             {
-                return semester;
+                return _semester;
             }
             set
             {
-                semester = value;
+                _semester = value;
             }
         }
         public int[] GetMarks()
         {
-            return marks;
+            return _marks;
         }
         public void SetMarks(int[] marks)
         {
-            this.marks = marks;
+            this._marks = marks;
         }
         public void printMarks(int[] marks)
         {
@@ -96,21 +100,21 @@ namespace Assignment8
         public double CalculatePercentage()
         {
             double percentage=0;
-            for (int i = 0; i < marks.Length; i++)
+            for (int i = 0; i < _marks.Length; i++)
             {
-                percentage += marks[i];
+                percentage += _marks[i];
             }
-            return (percentage / marks.Length)*100;
+            return (percentage / _marks.Length)*100;
         }
         public void PrintAllDetails()
         {
             Console.WriteLine("----------------WELCOME----------------");
             Console.WriteLine("Name:"+Name);
             Console.WriteLine("Enrollment Number:" + EnrollNumber);
-            Console.WriteLine("Father's Name:" + fathersName);
-            Console.WriteLine("Marks:"); printMarks(marks);
-            Console.WriteLine("College Name:" + collegeName);
-            Console.WriteLine("Semester:" + semester);
+            Console.WriteLine("Father's Name:" + _fathersName);
+            Console.WriteLine("Marks:"); printMarks(_marks);
+            Console.WriteLine("College Name:" + _collegeName);
+            Console.WriteLine("Semester:" + _semester);
             
             
         }
@@ -121,18 +125,18 @@ namespace Assignment8
             switch (choice)
             { 
                 case 0:
-                    Console.Write("Name:" + name);
+                    Console.Write("Name:" + _name);
                     break;
                 case 1:
-                    Console.WriteLine("Enrollment Number:" + enrollNumber);break;
+                    Console.WriteLine("Enrollment Number:" + _enrollNumber);break;
                 case 2:
-                    Console.WriteLine("Father's Name:" + fathersName);break;
+                    Console.WriteLine("Father's Name:" + _fathersName);break;
                 case 3: 
-                    Console.WriteLine("Marks:"); printMarks(marks);break;
+                    Console.WriteLine("Marks:"); printMarks(_marks);break;
                 case 4:
-                    Console.WriteLine("College Name:" + collegeName);break;
+                    Console.WriteLine("College Name:" + _collegeName);break;
                 case 5:
-                   Console.WriteLine("Semester:" + semester);break;
+                   Console.WriteLine("Semester:" + _semester);break;
                 default:
                     Console.WriteLine("Choice invalid");break;
             }

@@ -8,97 +8,97 @@ namespace Assignment6
 {
     public class Train
     {
-        private int number;
-        private String name;
-        private String source;
-        private String destination;
-        private DateTime arrivalTime;
-        private DateTime depatureTime;
-        private double fare;
+        private int _number;
+        private String _name;
+        private String _source;
+        private String _destination;
+        private DateTime _arrivalTime;
+        private DateTime _depatureTime;
+        private double _fare;
         public Train(String name, String source, String destination, DateTime arrivalTime, DateTime depatureTime, double fare)
         {
-            this.name = name;
-            this.source = source;
-            this.destination = destination;
-            this.arrivalTime = arrivalTime;
-            this.depatureTime = depatureTime;
-            this.fare = fare;
+            this._name = name;
+            this._source = source;
+            this._destination = destination;
+            this._arrivalTime = arrivalTime;
+            this._depatureTime = depatureTime;
+            this._fare = fare;
         }
         public int Number
         {
             get
             {
-                return number;
+                return _number;
             }
             set
             {
-                number = value;
+                _number = value;
             }
         }
         public String Name
         {
             get
             {
-                return name;
+                return _name;
             }
             set
             {
-                name = value;
+                _name = value;
             }
         }
         public String Source
         {
             get
             {
-                return source;
+                return _source;
             }
             set
             {
-                source = value;
+                _source = value;
             }
         }
         public String Destination
         {
             get
             {
-                return destination;
+                return _destination;
             }
             set
             {
-                destination = value;
+                _destination = value;
             }
         }
         public DateTime ArrivalTime
         {
             get
             {
-                return arrivalTime;
+                return _arrivalTime;
             }
             set
             {
-                arrivalTime = value;
+                _arrivalTime = value;
             }
         }
         public DateTime DepatureTime
         {
             get
             {
-                return depatureTime;
+                return _depatureTime;
             }
             set
             {
-                depatureTime = value;
+                _depatureTime = value;
             }
         }
         public double Fare
         {
             get
             {
-                return fare;
+                return _fare;
             }
             set
             {
-                fare = value;
+                _fare = value;
             }
 
 

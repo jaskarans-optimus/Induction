@@ -8,13 +8,13 @@ namespace Assignment11
 {
     class SchoolStudent : Student
     {
-        private int rollNumber;
-        private int standard;
-        private double fees;
-        private int[] marks;
-        private int presentDays;
-        private int workingDays;
-        private String nameOfinstitute;
+        private int _rollNumber;
+        private int _standard;
+        private double _fees;
+        private int[] _marks;
+        private int _presentDays;
+        private int _workingDays;
+        private String _nameOfinstitute;
         public SchoolStudent()
         {
 
@@ -22,104 +22,104 @@ namespace Assignment11
         public SchoolStudent(string name, string guardiansName, string address, int age, char sex, DateTime dateOfBirth, string mobileNo,int rollNumber,int standard,double fees,int[] marks,int presentDays,int workingDays,string nameOfInstitute)
             : base(name, guardiansName, address, age, sex, dateOfBirth, mobileNo)
         {
-            this.rollNumber = rollNumber;
-            this.standard = standard;
-            this.fees = fees;
-            this.marks = marks;
-            this.presentDays = presentDays;
-            this.workingDays = workingDays;
-            this.nameOfinstitute = nameOfInstitute;
+            this.RollNumber = rollNumber;
+            this.Standard = standard;
+            this.Fees = fees;
+            this.Marks = marks;
+            this.PresentDays = presentDays;
+            this.WorkingDays = workingDays;
+            this.NameOfInstitute = nameOfInstitute;
         }
         public int RollNumber
         {
             get
             {
-                return rollNumber;
+                return _rollNumber;
             }
             set
             {
-                rollNumber = value;
+                _rollNumber = value;
             }
         }
         public int Standard
         {
             get
             {
-                return standard;
+                return _standard;
             }
             set
             {
-                standard = value;
+                _standard = value;
             }
         }
         public double Fees
         {
             get
             {
-                return fees;
+                return _fees;
             }
             set
             {
-                fees = value;
+                _fees = value;
             }
         }
         public int[] Marks
         {
             get
             {
-                return marks;
+                return _marks;
             }
             set
             {
-                marks = value;
+                _marks = value;
             }
         }
         public int PresentDays
         {
             get
             {
-                return presentDays;
+                return _presentDays;
             }
             set
             {
-                presentDays = value;
+                _presentDays = value;
             }
         }
         public int WorkingDays
         {
             get
             {
-                return workingDays;
+                return _workingDays;
             }
             set
             {
-                workingDays = value;
+                _workingDays = value;
             }
         }
         public string NameOfInstitute
         {
             get
             {
-                return nameOfinstitute;
+                return _nameOfinstitute;
             }
             set
             {
-                nameOfinstitute = value;
+                _nameOfinstitute = value;
             }
         }
         public String Result()
         {
             double percentage = 0;
-            for (int i = 0; i < marks.Length; i++)
-                percentage += marks[i];
-            if ((percentage / marks.Length * 100) >= 33)
+            for (int i = 0; i < Marks.Length; i++)
+                percentage += Marks[i];
+            if ((percentage / Marks.Length * 100) >= 33)
                 return "Pass";
             return "Fail";
 
         }
         public string checkMinAttendance()
         {
-            if (((workingDays / presentDays) * 100) > 60)
+            if (((WorkingDays / PresentDays) * 100) > 60)
                 return "OK";
             return "Less than Minimum";
         }
@@ -132,7 +132,7 @@ namespace Assignment11
         }
         public override string ToString()
         {
-            return "School Student:\n"+base.ToString()+"\nRoll Number: "+rollNumber+"\tStandard: "+standard+"\nFees: "+fees+"\tMarks: "+StringMarks(marks)+"\nPresent Days: "+presentDays+"\tWorking Days: "+workingDays;
+            return "School Student:\n"+base.ToString()+"\nRoll Number: "+RollNumber+"\tStandard: "+Standard+"\nFees: "+Fees+"\tMarks: "+StringMarks(Marks)+"\nPresent Days: "+PresentDays+"\tWorking Days: "+WorkingDays;
         }
     }
 }

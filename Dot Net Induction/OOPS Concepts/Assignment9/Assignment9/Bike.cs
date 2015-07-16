@@ -4,9 +4,9 @@ namespace Assignment9
 {
     class Bike : Vehicle
     {
-        private String typeOfBike;
-        private int capacityOfEngine;
-        private int currentGear;
+        private String _typeOfBike;
+        private int _capacityOfEngine;
+        private int _currentGear;
         public Bike()
         {
                 
@@ -15,41 +15,41 @@ namespace Assignment9
             : base(make, yearOfManufacture, model, speed)
         {
             
-            this.typeOfBike = typeOfBike;
-            this.capacityOfEngine = capacityOfEngine;
-            this.currentGear = currentGear;
+            this._typeOfBike = typeOfBike;
+            this._capacityOfEngine = capacityOfEngine;
+            this._currentGear = currentGear;
         }
         public String TypeOfBike
         {
             get
             {
-                return typeOfBike;
+                return _typeOfBike;
             }
             set
             {
-                typeOfBike = value;
+                _typeOfBike = value;
             }
         }
         public int CapacityOFEngine
         {
             get
             {
-                return capacityOfEngine;
+                return _capacityOfEngine;
             }
             set
             {
-                capacityOfEngine = value;
+                _capacityOfEngine = value;
             }
         }
         public int CurrentGear
         {
             get
             {
-                return currentGear;
+                return _currentGear;
             }
             set
             {
-                currentGear = value;
+                _currentGear = value;
             }
         }
         public override void Accelerate()
@@ -59,23 +59,23 @@ namespace Assignment9
 
                 if ((Speed) < 10)
                 {
-                    currentGear = 1;
-                    currentGear = 0;
+                    _currentGear = 1;
+                    _currentGear = 0;
                 }
                 else if (Speed < 30)
                 {
-                    currentGear = 2;
+                    _currentGear = 2;
                 }
                 else if (Speed < 50)
                 {
-                    currentGear = 3;
+                    _currentGear = 3;
                 }
                 else if (Speed < 70)
                 {
-                    currentGear = 4;
+                    _currentGear = 4;
                 }
                 else
-                    currentGear = 5;
+                    _currentGear = 5;
             
         }
         public override void Deaccelerate()
@@ -87,32 +87,32 @@ namespace Assignment9
             }
                 if ((Speed) < 10)
                 {
-                    currentGear = 1;
+                    _currentGear = 1;
                 }
                 else if (Speed < 30)
                 {
-                    currentGear = 2;
+                    _currentGear = 2;
                 }
                 else if (Speed < 50)
                 {
-                    currentGear = 3;
+                    _currentGear = 3;
                 }
                 else if (Speed < 70)
                 {
-                    currentGear = 4;
+                    _currentGear = 4;
                 }
                 else
-                    currentGear = 5;
+                    _currentGear = 5;
             
         }
         public override void Stop()
         {
             Speed = 0;
-            currentGear = 0;
+            _currentGear = 0;
         }
         public override string ToString()
         { 
-            return "Make:" + Make + "\tModel:" + Model + "\nYearOFManufacture: " + YearOfManufacture  + "\nCurrent Speed: " + Speed + "\tCurrent Gear: " + currentGear + "\nType Of Bicycle: " + TypeOfBike + "\tCapacity Of Engine: " + capacityOfEngine;
+            return "Make:" + Make + "\tModel:" + Model + "\nYearOFManufacture: " + YearOfManufacture  + "\nCurrent Speed: " + Speed + "\tCurrent Gear: " +CurrentGear + "\nType Of Bicycle: " + TypeOfBike + "\tCapacity Of Engine: " + CapacityOFEngine;
         }
     }
 }

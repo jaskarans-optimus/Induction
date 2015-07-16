@@ -4,13 +4,13 @@ namespace Assignment9
 {
     class Car : Vehicle
     {
-        private String typeOfCar; //hatchback or SUV
-        private int noOfPassengers; //No. of Passenger can travels
-        private String transmission; //auto or manual
-        private int currentGear;
-        private bool sunRoof;
-        private bool powerWindow;
-        private bool powerSteering;
+        private String _typeOfCar; //hatchback or SUV
+        private int _noOfPassengers; //No. of Passenger can travels
+        private String _transmission; //auto or manual
+        private int _currentGear;
+        private bool _sunRoof;
+        private bool _powerWindow;
+        private bool _powerSteering;
         public Car()
         {
 
@@ -18,115 +18,115 @@ namespace Assignment9
         public Car(string make, int yearOfManufacture, string model, float speed, string typeOfCar, int noOfPassengers, String transmission, int currentGear, bool sunRoof, bool powerWindow, bool powerSteering)
             : base(make, yearOfManufacture, model, speed)
         {
-            this.typeOfCar = typeOfCar;
-            this.noOfPassengers = noOfPassengers;
-            this.transmission = transmission;
-            this.currentGear = currentGear;
-            this.sunRoof = sunRoof;
-            this.powerSteering = powerSteering;
-            this.powerWindow = powerWindow;
+            this._typeOfCar = typeOfCar;
+            this._noOfPassengers = noOfPassengers;
+            this._transmission = transmission;
+            this._currentGear = currentGear;
+            this._sunRoof = sunRoof;
+            this._powerSteering = powerSteering;
+            this._powerWindow = powerWindow;
         }
         public String TypeOFCar
         {
             get
             {
-                return typeOfCar;
+                return _typeOfCar;
             }
             set
             {
-                typeOfCar = value;
+                _typeOfCar = value;
             }
         }
         public int NoOfPassengers
         {
             get
             {
-                return noOfPassengers;
+                return _noOfPassengers;
             }
             set
             {
-                noOfPassengers = value;
+                _noOfPassengers = value;
             }
         }
         public String Transmission
         {
             get
             {
-                return transmission;
+                return _transmission;
             }
             set
             {
-                transmission = value;
+                _transmission = value;
             }
         }
         public int CurrentGear
         {
             get
             {
-                return currentGear;
+                return _currentGear;
             }
             set
             {
-                currentGear = value;
+                _currentGear = value;
             }
         }
         public bool SunRoof
         {
             get
             {
-                return sunRoof;
+                return _sunRoof;
             }
             set
             {
-                sunRoof = value;
+                _sunRoof = value;
             }
         }
         public bool PowerWindow
         {
             get
             {
-                return powerWindow;
+                return _powerWindow;
             }
             set
             {
-                powerWindow = value;
+                _powerWindow = value;
             }
         }
         public bool PowerSteering
         {
             get
             {
-                return powerSteering;
+                return _powerSteering;
             }
             set
             {
-                powerSteering = value;
+                _powerSteering = value;
             }
         }
         public override void Accelerate()
         {
             Speed = Speed + 20;
-            if (transmission.Equals("manual", StringComparison.InvariantCultureIgnoreCase))
+            if (_transmission.Equals("manual", StringComparison.InvariantCultureIgnoreCase))
             {
 
                 if ((Speed) < 10)
                 {
-                    currentGear = 1;
+                    _currentGear = 1;
                 }
                 else if (Speed < 30)
                 {
-                    currentGear = 2;
+                    _currentGear = 2;
                 }
                 else if (Speed < 50)
                 {
-                    currentGear = 3;
+                    _currentGear = 3;
                 }
                 else if (Speed < 70)
                 {
-                    currentGear = 4;
+                    _currentGear = 4;
                 }
                 else
-                    currentGear = 5;
+                    _currentGear = 5;
             }
         }
         public override void Deaccelerate()
@@ -136,37 +136,37 @@ namespace Assignment9
             {
                 Speed = 0;
             }
-            if (transmission.Equals("manual", StringComparison.InvariantCultureIgnoreCase))
+            if (_transmission.Equals("manual", StringComparison.InvariantCultureIgnoreCase))
             {
 
                 if ((Speed) < 10)
                 {
-                    currentGear = 1;
+                    _currentGear = 1;
                 }
                 else if (Speed < 30)
                 {
-                    currentGear = 2;
+                    _currentGear = 2;
                 }
                 else if (Speed < 50)
                 {
-                    currentGear = 3;
+                    _currentGear = 3;
                 }
                 else if (Speed < 70)
                 {
-                    currentGear = 4;
+                    _currentGear = 4;
                 }
                 else
-                    currentGear = 5;
+                    _currentGear = 5;
             }
         }
         public override void Stop()
         {
             Speed = 0;
-            currentGear = 0;
+            _currentGear = 0;
         }
         public override string ToString()
         {
-            return "Make:" + Make + "\tModel:" + Model + "\nYearOFManufacture:" + YearOfManufacture + "\tTransmission:" + transmission + "\nCurrent Speed:" + Speed + "\tCurrent Gear:" + currentGear + "\nType Of Bicycle:" + typeOfCar + "\tMax No. Of Passengers:" + noOfPassengers + "\nSunRoof:" + sunRoof + "\tPower Window:" + powerWindow;
+            return "Make:" + Make + "\tModel:" + Model + "\nYearOFManufacture:" + YearOfManufacture + "\tTransmission:" + Transmission + "\nCurrent Speed:" + Speed + "\tCurrent Gear:" + CurrentGear + "\nType Of Bicycle:" + TypeOFCar + "\tMax No. Of Passengers:" + NoOfPassengers + "\nSunRoof:" + SunRoof + "\tPower Window:" + PowerWindow;
         }
     }
 }

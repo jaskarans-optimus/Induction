@@ -8,26 +8,26 @@ namespace Assignment6
 {
     class Ticket
     {
-        private double ticketFare;
-        private String ticketClass;
-        private DateTime arrivalTime;
-        private DateTime depatureTime;
-        public Ticket(double ticketFare, String ticketClass, DateTime arrivalTime, DateTime depatureTime)
+        private double _ticketFare;
+        private String _ticketClass;
+        private DateTime _arrivalTime;
+        private DateTime _depatureTime;
+        public Ticket(double _ticketFare, String _ticketClass, DateTime _arrivalTime, DateTime _depatureTime)
         {
-            this.ticketFare = ticketFare;
-            this.ticketClass = ticketClass;
-            this.arrivalTime = arrivalTime;
-            this.depatureTime = depatureTime;
+            this._ticketFare = _ticketFare;
+            this._ticketClass = _ticketClass;
+            this._arrivalTime = _arrivalTime;
+            this._depatureTime = _depatureTime;
         }
         public double TicketFare
         {
             get
             {
-                return ticketFare;
+                return _ticketFare;
             }
             set
             {
-                ticketFare = value;
+                _ticketFare = value;
             }
 
         }
@@ -35,33 +35,33 @@ namespace Assignment6
         {
             get
             {
-                return ticketClass;
+                return _ticketClass;
             }
             set
             {
-                ticketClass = value;
+                _ticketClass = value;
             }
         }
         public DateTime ArrivalTime
         {
             get
             {
-                return arrivalTime;
+                return _arrivalTime;
             }
             set
             {
-                arrivalTime = value;
+                _arrivalTime = value;
             }
         }
         public DateTime DepatureTime
         {
             get
             {
-                return depatureTime;
+                return _depatureTime;
             }
             set
             {
-                depatureTime = value;
+                _depatureTime = value;
             }
         }
         public void PrintTicket(Passenger passenger)

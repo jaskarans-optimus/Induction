@@ -3,87 +3,87 @@ namespace Assignment9
 {
     public class Vehicle
     {
-        private string make;
-        private int yearOfManufacture;
-        private string model;
-        private float speed;
+        private string _make;
+        private int _yearOfManufacture;
+        private string _model;
+        private float _speed;
         public Vehicle()
         {
 
         }
         public Vehicle(string make, int yearOfManufacture, string model, float speed)
         {
-            this.make = make;
-            this.yearOfManufacture = yearOfManufacture;
-            this.model = model;
-            this.speed = speed;
+            this._make = make;
+            this._yearOfManufacture = yearOfManufacture;
+            this._model = model;
+            this._speed = speed;
         }
         public string Make
         {
             get
             {
-                return make;
+                return _make;
             }
             set
             {
-                make = value;
+                _make = value;
             }
         }
         public int YearOfManufacture
         {
             get
             {
-                return yearOfManufacture;
+                return _yearOfManufacture;
             }
             set
             {
-                yearOfManufacture = value;
+                _yearOfManufacture = value;
             }
         }
         public string Model
         {
             get
             {
-                return model;
+                return _model;
             }
             set
             {
-                model = value;
+                _model = value;
             }
         }
         public float Speed
         {
             get
             {
-                return speed;
+                return _speed;
 
             }
             set
             {
-                speed = value;
+                _speed = value;
             }
 
         }
         public virtual void Accelerate()
         {
-            speed = speed + 10;
+            _speed = _speed + 10;
         }
         public virtual void Deaccelerate()
         {
             
-            speed = speed - 10;
-            if (speed < 0)
+            _speed = _speed - 10;
+            if (_speed < 0)
             {
-                speed = 0;
+                _speed = 0;
             }
         }
         public virtual void Stop()
         {
-            speed = 0;
+            _speed = 0;
         }
         public bool isMoving()
         {
-            if (speed != 0)
+            if (_speed != 0)
                 return true;
             return false;
         }

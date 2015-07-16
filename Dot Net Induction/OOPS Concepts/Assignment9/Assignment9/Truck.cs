@@ -4,12 +4,12 @@ namespace Assignment9
 {
     class Truck : Vehicle
     {
-        private string typeOfTrucks; //Light ,medium ,heavy weight trucks
-        private float maxWeight;
-        private string transmission;//auto or manual
-        private float width;
-        private float height;
-        private int currentGear;
+        private string _typeOfTrucks; //Light ,medium ,heavy weight trucks
+        private float _maxWeight;
+        private string _transmission;//auto or manual
+        private float _width;
+        private float _height;
+        private int _currentGear;
         public Truck()
         {
 
@@ -17,55 +17,55 @@ namespace Assignment9
         public Truck(string make, int yearOfManufacture, string model, float speed, string typeOfTrucks, float maxWeight, string transmission, float width, float height, int currentGear)
             : base(make, yearOfManufacture, model, speed)
         {
-            this.typeOfTrucks = typeOfTrucks;
-            this.maxWeight = maxWeight;
-            this.transmission = transmission;
-            this.width = width;
-            this.height = height;
-            this.currentGear = currentGear;
+            this.TypeOfTrucks = typeOfTrucks;
+            this.MaxWeight = maxWeight;
+            this.Transmission = transmission;
+            this.Width = width;
+            this.Height = height;
+            this._currentGear = currentGear;
         }
         public string TypeOfTrucks
         {
             get
             {
-                return typeOfTrucks;
+                return _typeOfTrucks;
             }
             set
             {
-                typeOfTrucks = value;
+                _typeOfTrucks = value;
             }
         }
         public float MaxWeight
         {
             get
             {
-                return maxWeight;
+                return _maxWeight;
             }
             set
             {
-                maxWeight = value;
+                _maxWeight = value;
             }
         }
         public string Transmission
         {
             get
             {
-                return transmission;
+                return _transmission;
             }
             set
             {
-                transmission = value;
+                _transmission = value;
             }
         }
         public float Width
         {
             get
             {
-                return width;
+                return _width;
             }
             set
             {
-                width = value;
+                _width = value;
             }
 
         }
@@ -73,37 +73,37 @@ namespace Assignment9
         {
             get
             {
-                return height;
+                return _height;
             }
             set
             {
-                height = value;
+                _height = value;
             }
         }
         public override void Accelerate()
         {
             Speed = Speed + 10;
-            if (transmission.Equals("manual",StringComparison.InvariantCultureIgnoreCase))
+            if (_transmission.Equals("manual",StringComparison.InvariantCultureIgnoreCase))
             {
 
                 if ((Speed) < 10)
                 {
-                    currentGear = 1;
+                    _currentGear = 1;
                 }
                 else if (Speed < 25)
                 {
-                    currentGear = 2;
+                    _currentGear = 2;
                 }
                 else if (Speed < 35)
                 {
-                    currentGear = 3;
+                    _currentGear = 3;
                 }
                 else if (Speed < 45)
                 {
-                    currentGear = 4;
+                    _currentGear = 4;
                 }
                 else
-                    currentGear = 5;
+                    _currentGear = 5;
             }
         }
         public override void Deaccelerate()
@@ -112,39 +112,39 @@ namespace Assignment9
             if (Speed < 0)
             {
                 Speed = 0; 
-                currentGear = 0;
+                _currentGear = 0;
             }
-            if (transmission.Equals("manual",StringComparison.InvariantCultureIgnoreCase))
+            if (_transmission.Equals("manual",StringComparison.InvariantCultureIgnoreCase))
             {
 
                 if ((Speed) < 10)
                 {
-                    currentGear = 1;
+                    _currentGear = 1;
                 }
                 else if (Speed < 25)
                 {
-                    currentGear = 2;
+                    _currentGear = 2;
                 }
                 else if (Speed < 35)
                 {
-                    currentGear = 3;
+                    _currentGear = 3;
                 }
                 else if (Speed < 45)
                 {
-                    currentGear = 4;
+                    _currentGear = 4;
                 }
                 else
-                    currentGear = 5;
+                    _currentGear = 5;
             }
         }
         public override void Stop()
         {
             Speed = 0;
-            currentGear = 0;
+            _currentGear = 0;
         }
         public override string ToString()
         {
-            return "Make:" + Make + "\tModel:" + Model + "\nYearOFManufacture:" + YearOfManufacture + "\tTransmission:" +transmission  + "\nCurrent Speed:" + Speed + "\tCurrent Gear" + currentGear + "\nType Of Bicycle" + typeOfTrucks + "\tMax Weight" + maxWeight+"\nWidth"+width+"\tHeight"+height;
+            return "Make:" + Make + "\tModel:" + Model + "\nYearOFManufacture:" + YearOfManufacture + "\tTransmission:" +Transmission  + "\nCurrent Speed:" + Speed + "\tCurrent Gear" + _currentGear + "\nType Of Bicycle" + TypeOfTrucks + "\tMax Weight" + MaxWeight+"\nWidth"+Width+"\tHeight"+Height;
         }
     }
 }

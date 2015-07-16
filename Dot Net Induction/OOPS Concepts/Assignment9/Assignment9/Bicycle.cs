@@ -4,10 +4,10 @@ namespace Assignment9
 {
     class Bicycle : Vehicle
     {
-        private bool isGearPresent;
-        private int currentGear;
-        private String typeOfBicycle; //like Road Bicycles,touring bicycles 
-        private float sizeOfTire;
+        private bool _isGearPresent;
+        private int _currentGear;
+        private String _typeOfBicycle; //like Road Bicycles,touring bicycles 
+        private float _sizeOfTire;
   
         public Bicycle()
         {
@@ -15,87 +15,87 @@ namespace Assignment9
         }
         public Bicycle(string make, int yearOfManufacture, string model, float speed, bool isGearPresent, int currentGear, string typeOfBicycle, float sizeOfTire) : base(make,yearOfManufacture,model,speed)
         {
-            this.isGearPresent = isGearPresent;
-            this.currentGear = currentGear;
-            this.typeOfBicycle = typeOfBicycle;
-            this.sizeOfTire = sizeOfTire;
+            this._isGearPresent = isGearPresent;
+            this._currentGear = currentGear;
+            this._typeOfBicycle = typeOfBicycle;
+            this._sizeOfTire = sizeOfTire;
         }
         public int CurrentGear
         {
             get
             {
-                return currentGear;
+                return _currentGear;
             }
             set
             {
-                currentGear = value;
+                _currentGear = value;
             }
         }
         public string TypeOfBicycle
         {
             get
             {
-                return typeOfBicycle;
+                return _typeOfBicycle;
             }
             set
             {
-                typeOfBicycle = value;
+                _typeOfBicycle = value;
             }
         }
         public float SizeOfTire
         {
             get
             {
-                return sizeOfTire;
+                return _sizeOfTire;
             }
             set
             {
-                sizeOfTire = value;
+                _sizeOfTire = value;
             }
         }
         public bool IsGearPresent 
         {
             get
             {
-                return isGearPresent;
+                return _isGearPresent;
             }
             set
             {
-                isGearPresent = value;
+                _isGearPresent = value;
             }
         }
         public void ForwardGear()
         {
-            currentGear++;
+            _currentGear++;
         }
         public void ReverseGear()
         {
-            currentGear--;
+            _currentGear--;
         }
         public override void Accelerate()
         {
             Speed=Speed+10;
-            if (isGearPresent)
+            if (_isGearPresent)
             {
 
                 if ((Speed) < 5)
                 {
-                    currentGear = 1;
+                    _currentGear = 1;
                 }
                 else if (Speed < 10)
                 {
-                    currentGear = 2;
+                    _currentGear = 2;
                 }
                 else if (Speed < 15)
                 {
-                    currentGear = 3;
+                    _currentGear = 3;
                 }
                 else if (Speed < 20)
                 {
-                    currentGear = 4;
+                    _currentGear = 4;
                 }
                 else
-                    currentGear = 5;
+                    _currentGear = 5;
             }
         }
         public override void Deaccelerate()
@@ -104,39 +104,39 @@ namespace Assignment9
             if (Speed < 0)
             {
                 Speed = 0; 
-                currentGear = 0;
+                _currentGear = 0;
             }
-            if (isGearPresent)
+            if (_isGearPresent)
             {
 
                 if ((Speed) < 10)
                 {
-                    currentGear = 1;
+                    _currentGear = 1;
                 }
                 else if (Speed < 20)
                 {
-                    currentGear = 2;
+                    _currentGear = 2;
                 }
                 else if (Speed < 30)
                 {
-                    currentGear = 3;
+                    _currentGear = 3;
                 }
                 else if (Speed < 40)
                 {
-                    currentGear = 4;
+                    _currentGear = 4;
                 }
                 else
-                    currentGear = 5;
+                    _currentGear = 5;
             }
         }
         public override void Stop()
         {
             Speed=0;
-            currentGear=0;
+            _currentGear=0;
         }
         public override string ToString()
         {
-            return "Make:" + Make + "\tModel:" + Model + "\nYear Of Manufacture:" + YearOfManufacture + "\tGear:" + IsGearPresent + "\nCurrent Speed:" + Speed + "\tCurrent Gear" + currentGear + "\nType Of Bicycle: " + TypeOfBicycle + "\tSize of Tire: " + sizeOfTire;
+            return "Make:" + Make + "\tModel:" + Model + "\nYear Of Manufacture:" + YearOfManufacture + "\tGear:" + IsGearPresent + "\nCurrent Speed:" + Speed + "\tCurrent Gear" + CurrentGear + "\nType Of Bicycle: " + TypeOfBicycle + "\tSize of Tire: " + SizeOfTire;
         }
     }
 }

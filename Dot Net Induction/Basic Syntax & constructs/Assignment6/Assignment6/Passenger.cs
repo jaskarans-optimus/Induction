@@ -4,59 +4,59 @@ namespace Assignment6
 {
     public class Passenger
     {
-        private String name;
-        private int age;
-        private char sex;
-        private String address;
-        public Passenger(String name, int age, char sex, String address)
+        private String _name;
+        private int _age;
+        private char _sex;
+        private String _address;
+        public Passenger(String _name, int _age, char sex, String _address)
         {
-            this.name = name;
-            this.age = age;
-            this.sex = sex;
-            this.address = address;
+            this._name = _name;
+            this._age = _age;
+            this._sex = _sex;
+            this._address = _address;
         }
         public String Name
         {
             get
             {
-                return name;
+                return _name;
             }
             set
             {
-                name = value;
+                _name = value;
             }
         }
         public int Age
         {
             get
             {
-                return age;
+                return _age;
             }
             set
             {
-                age = value;
+                _age = value;
             }
         }
         public char Sex
         {
             get
             {
-                return ;
+                return _sex;
             }
             set
             {
-                age = value;
+                _sex = value;
             }
         }
         public String Address
         {
             get
             {
-                return address;
+                return _address;
             }
             set
             {
-                address = value;
+                _address = value;
             }
         }
         public String Reservation();

@@ -8,59 +8,59 @@ namespace Assignment6
 {
     class Administrator
     {
-        private String name;
-        private int age;
-        private char sex;
-        private String address;
-        public Administrator(String name, int age, char sex, String address)
+        private String _name;
+        private int _age;
+        private char _sex;
+        private String _address;
+        public Administrator(String _name, int _age, char _sex, String _address)
         {
-            this.name = name;
-            this.age = age;
-            this.sex = sex;
-            this.address = address;
+            this._name = _name;
+            this._age = _age;
+            this._sex = _sex;
+            this._address = _address;
         }
         public int Age
         {
             get
             {
-                return age;
+                return _age;
             }
             set
             {
-                age = value;
+                _age = value;
             }
         }
         public char Sex
         {
             get
             {
-                return sex;
+                return _sex;
             }
             set
             {
-                sex = value;
+                _sex = value;
             }
         }
         public String Name
         {
             get
             {
-                return name;
+                return _name;
             }
             set
             {
-                name = value;
+                _name = value;
             }
         }
         public String Address
         {
             get
             {
-                return address;
+                return _address;
             }
             set
             {
-                address = value;
+                _address = value;
             }
         }
         public void Authentication();
