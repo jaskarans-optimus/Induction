@@ -1,0 +1,23 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteTemplate.master.cs" Inherits="WebApplication2.SiteTemplate" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:Image ID="Image1" src="optimusinfologo.png" runat="server" Width="120px" Height="80px"/>
+        <asp:Label ID="Welcomemsg" runat="server" Text="" Font-Bold="True" Height="50" Width="600"  ></asp:Label>
+        <asp:Button ID="Logout" Text="Logout" runat="server" OnClick="Logout_Clicked"  />
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
