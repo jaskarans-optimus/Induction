@@ -116,10 +116,10 @@ namespace Assignment17
             return streamName;
             
         }
-        public static DataSet GetData(string queryString)
+        public static DataTable GetData(string queryString)
         {
             String connectionString = ConfigurationManager.ConnectionStrings["UniversityDB"].ConnectionString;
-            DataSet dataSet = new DataSet();
+            DataTable dataTable = new DataTable();
             try
             {
                 
@@ -127,16 +127,17 @@ namespace Assignment17
                 SqlDataAdapter adapter = new SqlDataAdapter(queryString, connection);
 
 
-                adapter.Fill(dataSet);
-
+                adapter.Fill(dataTable);
+               
             }
+            
             catch (Exception ex)
             {
 
                 // The connection failed. Display an error message.
                 LogToEventLog(ex);
             }
-            return dataSet;
+            return dataTable;
         }
         public static void LogToEventLog(Exception e)
         {

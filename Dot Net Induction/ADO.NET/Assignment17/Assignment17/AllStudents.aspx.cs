@@ -24,23 +24,39 @@ namespace Assignment17
 
         protected void StreamList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int streamID=StreamList.SelectedIndex+1;
+        BindData();
+            
+        }
+        private DataTable BindData()
+        {
+            int streamID = StreamList.SelectedIndex + 1;
             String queryString = String.Format("SELECT * FROM Student WHERE Streams={0}", streamID);
-            DataSet dataSet = UtilityFunctions.GetData(queryString);
-            if (dataSet.Tables.Count > 0)
+            DataTable dataTable = UtilityFunctions.GetData(queryString);
+            if (dataTable.Rows.Count > 0)
             {
-                StudentGrid.DataSource = dataSet;
+                StudentGrid.DataSource = dataTable;
                 StudentGrid.DataBind();
             }
             else
             {
                 Status.Text = "Unable to connect Database";
             }
+            return dataTable;
         }
         protected void gridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             StudentGrid.PageIndex = e.NewPageIndex;
+            BindData();
+        }
+
+        protected void StudentGrid_Sorting(object sender, GridViewSortEventArgs e)
+        {
+
+            DataView view = new DataView(BindData());
+            view.Sort = e.SortExpression + " " + "Asc";
+            StudentGrid.DataSource = view;
             StudentGrid.DataBind();
+
         }
     }
 }
