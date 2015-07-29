@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<students>
+	<student name="opera" age="16">
+		<stream>PCM</stream>
+		<address>
+			<city>Noida</city>
+			<country>India</country>
+		</address>
+	</student>
+	<student name="chunky" age="18">
+		<stream>ECO</stream>
+		<address>
+			<city>Vaishali</city>
+			<country>India</country>
+		</address>
+	</student>
+	<student name="sidhu" age="20">
+		<stream>PCM</stream>
+		<address>
+			<city>Amritsar</city>
+			<country>India</country>
+		</address>
+	</student>
+	<student name="sameer" age="18">
+		<stream>PCM</stream>
+		<address>
+			<city>Delhi</city>
+			<country>India</country>
+		</address>
+	</student>
+	
+</students>
