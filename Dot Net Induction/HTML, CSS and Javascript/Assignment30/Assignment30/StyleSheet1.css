@@ -1,0 +1,38 @@
+﻿body {
+    font-family:Arial;
+    font-size:15px;
+    background-color:snow;
+    
+
+}
+#Mcq {
+    padding:50px 0px 0px 0px;
+    margin:0 auto;
+    width:500px;
+}
+#Question {
+    text-indent:5px;
+}
+.options {
+    text-align:center;
+    padding:5px;
+    border:solid 2px;
+    border-radius:7px;
+    margin:10px auto;
+    width:200px;  
+    display:block;
+}
+    .options:hover {
+        background-color:dodgerblue;
+    }
+
+btnNext {
+    text-align:right;
+}
+.buttons
+{
+    text-align:right;
+}
+.instructions {
+    color:dodgerblue;
+}

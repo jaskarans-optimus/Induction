@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="StyleSheet1.css" />
+</head>
+<body>
+    
+    <div>
+        <h1>Question Name</h1>
+    </div>
+    <hr />
+    <div class="instructions">
+      <p><i>Instructions</i></p>
+    </div>
+    <div>
+        <form id="Mcq">
+            <label id="Question" >Question here!!</label>
+           
+            <label  class="options" id="divOption1" >
+            <input type="checkbox" id="option1" name="option1" value="option1" onclick="option3_uncheck(divOption3); changeColor(divOption1)" />Answer 1
+            </label>
+
+            <label class="options" id="divOption2">
+              <input type="checkbox" id="option2" value="option2" onclick="option3_uncheck(divOption3); changeColor(divOption2)" />Answer 2
+            </label>
+
+
+
+            <label  class="options" id="divOption3" >
+            <input type="checkbox" id="option3" value="option3" onclick="option3_check(divOption1,divOption2,divOption4);changeColor(divOption3)" />Answer 3
+             </label>
+
+          
+            <label class="options" id="divOption4" >
+            <input type="checkbox" id="option4" value="option4" onclick="option3_uncheck(divOption3);changeColor(divOption4)" />Answer 4
+            </label>
+
+            <div class="buttons">
+                <input type="image" src="com-next.jpg" alt="Next" />
+            </div>
+
+        </form>
+    </div>
+    <script src="JavaScript1.js"></script>
+</body>
+</html>
