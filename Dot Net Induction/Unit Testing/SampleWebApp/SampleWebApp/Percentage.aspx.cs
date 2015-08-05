@@ -18,7 +18,7 @@ namespace SampleWebApp
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             ParsePercentage parser = new ParsePercentage();
-            parser.ConvertPercentage("-15");
+            double percentage=parser.ConvertPercentage(txtPercentage.Text);
         }
     }
 }

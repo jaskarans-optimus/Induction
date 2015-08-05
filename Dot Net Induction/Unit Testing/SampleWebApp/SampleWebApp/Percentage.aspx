@@ -9,17 +9,9 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:Label runat="server" Text="Enter the marks:" ID="lblPercentage"></asp:Label>
+        <asp:Label runat="server" Text="Enter the Percentage:" ID="lblPercentage"></asp:Label>
         <br />
-        <asp:TextBox runat="server" ID="txtMark1" > </asp:TextBox>
-        <br />
-        <asp:TextBox runat="server" ID="TextBox2" > </asp:TextBox>
-        <br />
-        <asp:TextBox runat="server" ID="TextBox3" > </asp:TextBox>
-        <br />
-        <asp:TextBox runat="server" ID="TextBox4" > </asp:TextBox>
-        <br />
-        <asp:TextBox runat="server" ID="TextBox5" > </asp:TextBox>
+        <asp:TextBox runat="server" ID="txtPercentage" > </asp:TextBox>
         <br />
         <asp:Button Text="Submit" runat="server" ID="btnSubmit" OnClick="btnSubmit_Click" />
     </div>
